@@ -33,3 +33,34 @@ individual. If the rate is greater than 1, the infection is able to spread in th
 _ People_vaccinated: number of people that have taken their first dose of a vaccine
 * People_fully_vaccinated: number of people that have taken all doses of a vaccine
 + New_vaccinations: number of first doses approved to be administered
+  ![data](https://github.com/SeidaAhmed/An-application-of-Machine-Learning-to-COVID-19-data/assets/65707004/3e1a1916-bdb7-406e-9456-2d37c598517b)
+ Figure 1 is a set of three visualizations from the “Our World in Data COVID Vaccination data repository”, specifically the people_vaccinated, people_fully_vaccinated, and the new_vaccinations features. The zero value, represented by a flat line on the x-axis, from April to January 20201 demonstrates Canada’s lack of vaccines. Interestingly, as Canada began to secure and administer more vaccinations in January 2021, Canada experienced a delay in the vaccination procurement process. This delay ended roughly around the end of March, which is represented in the line graphs by a slight dip in the trend lines of all three features before rising exponentially.
+
+## Q4 Data Description:
+The study has used one of the datasets prepared by the John Hopkins university center for system science and engineering. It is a time series data of covid 19 global confirmed cases. The original dataset has 276 rows and 499 columns. It has a large number of columns, each day since the pandemic hits taken as a column to record each country's daily confirmed cases. For this study purpose the dataset has been transformed to 495 rows and 5 columns. The daily column values are melted to rows via panda functions as shown in the below tables:
+
+### General Trend of the spread of the virus since January 2020
+The two-line graphs show the general trend of the spread of the virus in the US since Jan 22, 2020. The first graph depicts the trend of the daily confirmed cases by date. As it can be seen the pandemic has highest daily cases around January 2021. After that date it has started declining. The second graph demonstrates the growth ratio of Covid-19 cases by date. The red line depicts the mean growth ratio which is value of 1.04. The growth ratio is below the mean since around May 2020. Before the given date, the growth ratio was unstable.
+ ![Picture1](https://github.com/SeidaAhmed/An-application-of-Machine-Learning-to-COVID-19-data/assets/65707004/892fe80c-8718-4b8a-93b5-b68a5d9267ce)
+ Figure: confirmed cases by date
+ ![Picture2](https://github.com/SeidaAhmed/An-application-of-Machine-Learning-to-COVID-19-data/assets/65707004/3d6192bb-3868-4d8c-afc5-b0e0235d9436)
+ Figure: growth ratio by date with mean growth ratio
+
+### Linear Regression
+The first model implemented was simple linear regression on growth ratio by number of days. Growth ratio of virus on day N is calculated as the number of confirmed cases on day N divided by the number of confirmed cases on day N-1. From the results of the linear regression, there is a slight downward trend on growth ratio. Residual plot of linear regression on growth ratio is almost constant straight line at around 0 growth ratio which confirms reasonable assumption.
+
+![Picture3](https://github.com/SeidaAhmed/An-application-of-Machine-Learning-to-COVID-19-data/assets/65707004/a007ad82-4a06-4765-8b51-9b40bd5975d8)
+
+![Picture4](https://github.com/SeidaAhmed/An-application-of-Machine-Learning-to-COVID-19-data/assets/65707004/a6dff052-0dd4-4e3a-aae0-a6ed862b47fb)
+### Ridge Regression
+To further enhance the prediction, I implemented Ridge regression on growth ratio by number of days with Alpha value 1. 80% training and 20% test data used to carry out the model. As shown on the predicted growth ratio graph it is a slightly sharper downward trend on growth ratio than the linear regression.
+
+![Picture5](https://github.com/SeidaAhmed/An-application-of-Machine-Learning-to-COVID-19-data/assets/65707004/c4a9c551-07c2-49c5-8c95-812c348976bd)
+
+
+### CV-Ridge Regression
+The third model implemented was cross validation ridge regression on growth ratio by number of days. Among the range of 1-30 the best alpha value selected by the model is 2.72. From the result value of coefficients are smaller than ridge regression with MSE 0.01123 and R2 10%, which is higher than the previous model (Ridge regression). This model also tested via a 20% test dataset and resulted in a less sharp downward trend on growth ratio than Ridge regression.
+![Picture7](https://github.com/SeidaAhmed/An-application-of-Machine-Learning-to-COVID-19-data/assets/65707004/eddba620-e42f-4109-8fd5-fdab50beaa3b)
+
+  
+
